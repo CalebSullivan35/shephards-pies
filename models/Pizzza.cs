@@ -9,13 +9,23 @@ public class Pizza {
   public Sauce Sauce { get; set; }
   public int PizzaSizeId { get; set; }
   public PizzaSize PizzaSize{ get; set; }
-  //list of pizza toppings
+  // list of pizza toppings
   public List<PizzaTopping> PizzaToppings { get; set; }
-  //add calculated property to get the cost of the pizza. Get it from all the pizzatoppings with this pizza as well as the pizza size. 
-public double PizzaTotalCost {
+  // add calculated property to get the cost of the pizza. Get it from all the pizzatoppings with this pizza as well as the pizza size. 
+  public double PizzaTotalCost {
 
   get {
-      return (PizzaToppings.Count() * 0.50) + PizzaSize.Cost;
+      //intialize total cost
+      double totalCost = PizzaSize.Cost;
+
+      if (PizzaToppings != null)
+      {
+        foreach (var topping in PizzaToppings)
+        {
+          totalCost += 0.50;
+        }
+      }
+      return totalCost;
   }
 }
 

@@ -6,10 +6,10 @@ using ShephardsPies.Data;
 [ApiController]
 [Route("api/[controller]")]
 
-public class ToppingController : ControllerBase {
+public class SizeController : ControllerBase {
   private ShephardsPiesDbContext _dbContext;
 
-  public ToppingController(ShephardsPiesDbContext context)
+  public SizeController(ShephardsPiesDbContext context)
   {
     _dbContext = context;
   }
@@ -19,6 +19,6 @@ public class ToppingController : ControllerBase {
 
   public IActionResult Get()
   {
-    return Ok(_dbContext.Toppings);
+    return Ok(_dbContext.PizzaSizes);
   }
 }
