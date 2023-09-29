@@ -15,8 +15,7 @@ public class ShephardsPiesDbContext : IdentityDbContext<IdentityUser>
     public DbSet<PizzaSize> PizzaSizes { get; set; }
     public DbSet<Sauce> Sauces { get; set; }
     public DbSet<PizzaTopping> PizzaToppings { get; set; }
-    public DbSet<Pizza> Pizzas { get; set; }
-    public DbSet<PizzaOrder> PizzaOrders { get; set; }
+    public DbSet<Pizza> Pizzas { get; set; }    
     public DbSet<Order> Orders { get; set; }
 
 
@@ -178,6 +177,7 @@ public class ShephardsPiesDbContext : IdentityDbContext<IdentityUser>
                 CheeseId =1,
                 SauceId =1,
                 PizzaSizeId = 2,
+                OrderId =1
             },
             new Pizza
             {
@@ -185,6 +185,7 @@ public class ShephardsPiesDbContext : IdentityDbContext<IdentityUser>
                 CheeseId =4,
                 SauceId =4,
                 PizzaSizeId = 3,
+                 OrderId =1
             },
             new Pizza
             {
@@ -192,6 +193,7 @@ public class ShephardsPiesDbContext : IdentityDbContext<IdentityUser>
                 CheeseId =3,
                 SauceId =2,
                 PizzaSizeId = 1,
+                 OrderId =1
             },
             new Pizza
             {
@@ -199,6 +201,7 @@ public class ShephardsPiesDbContext : IdentityDbContext<IdentityUser>
                 CheeseId =2,
                 SauceId =2,
                 PizzaSizeId = 2,
+                 OrderId =1
             },
             new Pizza
             {
@@ -206,6 +209,7 @@ public class ShephardsPiesDbContext : IdentityDbContext<IdentityUser>
                 CheeseId =2,
                 SauceId =3,
                 PizzaSizeId = 3,
+                 OrderId =2
             },
             new Pizza
             {
@@ -213,6 +217,7 @@ public class ShephardsPiesDbContext : IdentityDbContext<IdentityUser>
                 CheeseId =3,
                 SauceId =2,
                 PizzaSizeId = 1,
+                 OrderId =2
             },
             new Pizza
             {
@@ -220,6 +225,7 @@ public class ShephardsPiesDbContext : IdentityDbContext<IdentityUser>
                 CheeseId =2,
                 SauceId =1,
                 PizzaSizeId = 2,
+                 OrderId =2
             },
         });
 
@@ -308,51 +314,6 @@ public class ShephardsPiesDbContext : IdentityDbContext<IdentityUser>
                 Id = 14,
                 PizzaId = 4,
                 ToppingId = 1,
-            },
-        });
-
-        modelBuilder.Entity<PizzaOrder>().HasData(new PizzaOrder[] {
-            new PizzaOrder
-            {
-                Id =1,
-                PizzaId = 1,
-                OrderId = 1,
-            },
-            new PizzaOrder
-            {
-                Id =2,
-                PizzaId =2,
-                OrderId = 1,
-            },
-            new PizzaOrder
-            {
-                Id =3,
-                PizzaId =3,
-                OrderId = 1,
-            },
-            new PizzaOrder
-            {
-                Id =4,
-                PizzaId =4,
-                OrderId = 1,
-            },
-            new PizzaOrder
-            {
-                Id =5,
-                PizzaId =5,
-                OrderId = 2,
-            },
-            new PizzaOrder
-            {
-                Id =6,
-                PizzaId =6,
-                OrderId = 2,
-            },
-            new PizzaOrder
-            {
-                Id =7,
-                PizzaId =7,
-                OrderId = 2,
             },
         });
 

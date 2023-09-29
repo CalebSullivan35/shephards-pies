@@ -12,7 +12,7 @@ using ShephardsPies.Data;
 namespace shephards_pies.Migrations
 {
     [DbContext(typeof(ShephardsPiesDbContext))]
-    [Migration("20230929011853_initial")]
+    [Migration("20230929144607_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,7 +53,7 @@ namespace shephards_pies.Migrations
                         new
                         {
                             Id = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
-                            ConcurrencyStamp = "6b2bc334-f9cf-43ae-8434-6b61105c24ee",
+                            ConcurrencyStamp = "83a2f331-8135-4269-a916-26fa5bf750bb",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -152,13 +152,13 @@ namespace shephards_pies.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "93307f54-9940-4679-ad2e-a078c31327cc",
+                            ConcurrencyStamp = "cd3a8182-6fc3-437d-8699-69bf7bc3e76f",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEJcfUJnYWWTUhNuIgr+Ck/98YV4pLxFSyM/a3lddhjnmNLuHrz4whk4bNeDyzADhAw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMUqVlNOpkcjJsxy8hmVNLA6pRnkax3+LW94+hrAioWvC/0+QjitlVQDi0E0UCg8dQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3e1e7ed8-87f7-40d6-acb0-95f4c288532c",
+                            SecurityStamp = "1810d96e-4cfc-4b71-aa60-f6b535263c8f",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });
@@ -346,6 +346,9 @@ namespace shephards_pies.Migrations
                     b.Property<int>("CheeseId")
                         .HasColumnType("integer");
 
+                    b.Property<int>("OrderId")
+                        .HasColumnType("integer");
+
                     b.Property<int>("PizzaSizeId")
                         .HasColumnType("integer");
 
@@ -355,6 +358,8 @@ namespace shephards_pies.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CheeseId");
+
+                    b.HasIndex("OrderId");
 
                     b.HasIndex("PizzaSizeId");
 
@@ -367,6 +372,7 @@ namespace shephards_pies.Migrations
                         {
                             Id = 1,
                             CheeseId = 1,
+                            OrderId = 1,
                             PizzaSizeId = 2,
                             SauceId = 1
                         },
@@ -374,6 +380,7 @@ namespace shephards_pies.Migrations
                         {
                             Id = 2,
                             CheeseId = 4,
+                            OrderId = 1,
                             PizzaSizeId = 3,
                             SauceId = 4
                         },
@@ -381,6 +388,7 @@ namespace shephards_pies.Migrations
                         {
                             Id = 3,
                             CheeseId = 3,
+                            OrderId = 1,
                             PizzaSizeId = 1,
                             SauceId = 2
                         },
@@ -388,6 +396,7 @@ namespace shephards_pies.Migrations
                         {
                             Id = 4,
                             CheeseId = 2,
+                            OrderId = 1,
                             PizzaSizeId = 2,
                             SauceId = 2
                         },
@@ -395,6 +404,7 @@ namespace shephards_pies.Migrations
                         {
                             Id = 5,
                             CheeseId = 2,
+                            OrderId = 2,
                             PizzaSizeId = 3,
                             SauceId = 3
                         },
@@ -402,6 +412,7 @@ namespace shephards_pies.Migrations
                         {
                             Id = 6,
                             CheeseId = 3,
+                            OrderId = 2,
                             PizzaSizeId = 1,
                             SauceId = 2
                         },
@@ -409,75 +420,9 @@ namespace shephards_pies.Migrations
                         {
                             Id = 7,
                             CheeseId = 2,
+                            OrderId = 2,
                             PizzaSizeId = 2,
                             SauceId = 1
-                        });
-                });
-
-            modelBuilder.Entity("ShephardsPies.Models.PizzaOrder", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("PizzaId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("PizzaId");
-
-                    b.ToTable("PizzaOrders");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            OrderId = 1,
-                            PizzaId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            OrderId = 1,
-                            PizzaId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            OrderId = 1,
-                            PizzaId = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            OrderId = 1,
-                            PizzaId = 4
-                        },
-                        new
-                        {
-                            Id = 5,
-                            OrderId = 2,
-                            PizzaId = 5
-                        },
-                        new
-                        {
-                            Id = 6,
-                            OrderId = 2,
-                            PizzaId = 6
-                        },
-                        new
-                        {
-                            Id = 7,
-                            OrderId = 2,
-                            PizzaId = 7
                         });
                 });
 
@@ -838,6 +783,12 @@ namespace shephards_pies.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ShephardsPies.Models.Order", null)
+                        .WithMany("Pizzas")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ShephardsPies.Models.PizzaSize", "PizzaSize")
                         .WithMany()
                         .HasForeignKey("PizzaSizeId")
@@ -855,23 +806,6 @@ namespace shephards_pies.Migrations
                     b.Navigation("PizzaSize");
 
                     b.Navigation("Sauce");
-                });
-
-            modelBuilder.Entity("ShephardsPies.Models.PizzaOrder", b =>
-                {
-                    b.HasOne("ShephardsPies.Models.Order", null)
-                        .WithMany("PizzaOrders")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ShephardsPies.Models.Pizza", "Pizza")
-                        .WithMany()
-                        .HasForeignKey("PizzaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Pizza");
                 });
 
             modelBuilder.Entity("ShephardsPies.Models.PizzaTopping", b =>
@@ -904,7 +838,7 @@ namespace shephards_pies.Migrations
 
             modelBuilder.Entity("ShephardsPies.Models.Order", b =>
                 {
-                    b.Navigation("PizzaOrders");
+                    b.Navigation("Pizzas");
                 });
 
             modelBuilder.Entity("ShephardsPies.Models.Pizza", b =>

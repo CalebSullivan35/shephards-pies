@@ -230,39 +230,6 @@ namespace shephards_pies.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Pizzas",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CheeseId = table.Column<int>(type: "integer", nullable: false),
-                    SauceId = table.Column<int>(type: "integer", nullable: false),
-                    PizzaSizeId = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Pizzas", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Pizzas_Cheeses_CheeseId",
-                        column: x => x.CheeseId,
-                        principalTable: "Cheeses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Pizzas_PizzaSizes_PizzaSizeId",
-                        column: x => x.PizzaSizeId,
-                        principalTable: "PizzaSizes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Pizzas_Sauces_SauceId",
-                        column: x => x.SauceId,
-                        principalTable: "Sauces",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
                 {
@@ -285,6 +252,46 @@ namespace shephards_pies.Migrations
                         name: "FK_Orders_UserProfiles_EmployeeRecieverId",
                         column: x => x.EmployeeRecieverId,
                         principalTable: "UserProfiles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Pizzas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CheeseId = table.Column<int>(type: "integer", nullable: false),
+                    SauceId = table.Column<int>(type: "integer", nullable: false),
+                    PizzaSizeId = table.Column<int>(type: "integer", nullable: false),
+                    OrderId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Pizzas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Pizzas_Cheeses_CheeseId",
+                        column: x => x.CheeseId,
+                        principalTable: "Cheeses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Pizzas_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Pizzas_PizzaSizes_PizzaSizeId",
+                        column: x => x.PizzaSizeId,
+                        principalTable: "PizzaSizes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Pizzas_Sauces_SauceId",
+                        column: x => x.SauceId,
+                        principalTable: "Sauces",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -315,41 +322,15 @@ namespace shephards_pies.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "PizzaOrders",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    PizzaId = table.Column<int>(type: "integer", nullable: false),
-                    OrderId = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PizzaOrders", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PizzaOrders_Orders_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PizzaOrders_Pizzas_PizzaId",
-                        column: x => x.PizzaId,
-                        principalTable: "Pizzas",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "6b2bc334-f9cf-43ae-8434-6b61105c24ee", "Admin", "admin" });
+                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "83a2f331-8135-4269-a916-26fa5bf750bb", "Admin", "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "93307f54-9940-4679-ad2e-a078c31327cc", "admina@strator.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEJcfUJnYWWTUhNuIgr+Ck/98YV4pLxFSyM/a3lddhjnmNLuHrz4whk4bNeDyzADhAw==", null, false, "3e1e7ed8-87f7-40d6-acb0-95f4c288532c", false, "Administrator" });
+                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "cd3a8182-6fc3-437d-8699-69bf7bc3e76f", "admina@strator.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEMUqVlNOpkcjJsxy8hmVNLA6pRnkax3+LW94+hrAioWvC/0+QjitlVQDi0E0UCg8dQ==", null, false, "1810d96e-4cfc-4b71-aa60-f6b535263c8f", false, "Administrator" });
 
             migrationBuilder.InsertData(
                 table: "Cheeses",
@@ -404,20 +385,6 @@ namespace shephards_pies.Migrations
                 values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f" });
 
             migrationBuilder.InsertData(
-                table: "Pizzas",
-                columns: new[] { "Id", "CheeseId", "PizzaSizeId", "SauceId" },
-                values: new object[,]
-                {
-                    { 1, 1, 2, 1 },
-                    { 2, 4, 3, 4 },
-                    { 3, 3, 1, 2 },
-                    { 4, 2, 2, 2 },
-                    { 5, 2, 3, 3 },
-                    { 6, 3, 1, 2 },
-                    { 7, 2, 2, 1 }
-                });
-
-            migrationBuilder.InsertData(
                 table: "UserProfiles",
                 columns: new[] { "Id", "Address", "FirstName", "IdentityUserId", "LastName" },
                 values: new object[] { 1, "101 Main Street", "Admina", "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", "Strator" });
@@ -429,6 +396,20 @@ namespace shephards_pies.Migrations
                 {
                     { 1, null, 1, new DateTime(2023, 9, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0 },
                     { 2, null, 1, new DateTime(2023, 9, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 25.0 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Pizzas",
+                columns: new[] { "Id", "CheeseId", "OrderId", "PizzaSizeId", "SauceId" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, 2, 1 },
+                    { 2, 4, 1, 3, 4 },
+                    { 3, 3, 1, 1, 2 },
+                    { 4, 2, 1, 2, 2 },
+                    { 5, 2, 2, 3, 3 },
+                    { 6, 3, 2, 1, 2 },
+                    { 7, 2, 2, 2, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -450,20 +431,6 @@ namespace shephards_pies.Migrations
                     { 12, 7, 3 },
                     { 13, 7, 2 },
                     { 14, 4, 1 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "PizzaOrders",
-                columns: new[] { "Id", "OrderId", "PizzaId" },
-                values: new object[,]
-                {
-                    { 1, 1, 1 },
-                    { 2, 1, 2 },
-                    { 3, 1, 3 },
-                    { 4, 1, 4 },
-                    { 5, 2, 5 },
-                    { 6, 2, 6 },
-                    { 7, 2, 7 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -514,19 +481,14 @@ namespace shephards_pies.Migrations
                 column: "EmployeeRecieverId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PizzaOrders_OrderId",
-                table: "PizzaOrders",
-                column: "OrderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PizzaOrders_PizzaId",
-                table: "PizzaOrders",
-                column: "PizzaId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Pizzas_CheeseId",
                 table: "Pizzas",
                 column: "CheeseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pizzas_OrderId",
+                table: "Pizzas",
+                column: "OrderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pizzas_PizzaSizeId",
@@ -572,16 +534,10 @@ namespace shephards_pies.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "PizzaOrders");
-
-            migrationBuilder.DropTable(
                 name: "PizzaToppings");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Pizzas");
@@ -590,16 +546,19 @@ namespace shephards_pies.Migrations
                 name: "Toppings");
 
             migrationBuilder.DropTable(
-                name: "UserProfiles");
+                name: "Cheeses");
 
             migrationBuilder.DropTable(
-                name: "Cheeses");
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "PizzaSizes");
 
             migrationBuilder.DropTable(
                 name: "Sauces");
+
+            migrationBuilder.DropTable(
+                name: "UserProfiles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
