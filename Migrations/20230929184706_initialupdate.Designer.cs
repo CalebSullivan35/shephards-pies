@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ShephardsPies.Data;
@@ -11,9 +12,10 @@ using ShephardsPies.Data;
 namespace shephards_pies.Migrations
 {
     [DbContext(typeof(ShephardsPiesDbContext))]
-    partial class ShephardsPiesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230929184706_initialupdate")]
+    partial class initialupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

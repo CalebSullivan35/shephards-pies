@@ -12,7 +12,7 @@ using ShephardsPies.Data;
 namespace shephards_pies.Migrations
 {
     [DbContext(typeof(ShephardsPiesDbContext))]
-    [Migration("20230929144607_initial")]
+    [Migration("20230929182503_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,7 +53,7 @@ namespace shephards_pies.Migrations
                         new
                         {
                             Id = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
-                            ConcurrencyStamp = "83a2f331-8135-4269-a916-26fa5bf750bb",
+                            ConcurrencyStamp = "964d9b9d-0a7e-4c2f-9f82-c4b0eab04992",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -152,15 +152,57 @@ namespace shephards_pies.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cd3a8182-6fc3-437d-8699-69bf7bc3e76f",
+                            ConcurrencyStamp = "0843ef9f-75a3-4eec-98b5-a3989b6d5636",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEMUqVlNOpkcjJsxy8hmVNLA6pRnkax3+LW94+hrAioWvC/0+QjitlVQDi0E0UCg8dQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEB8bw/0JRZGIi2MEFMkDSownsj6aMzoLqgbs7LSyYN4Q8DGY+uzZraPhsS1LvYFmBQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1810d96e-4cfc-4b71-aa60-f6b535263c8f",
+                            SecurityStamp = "a969798a-6e70-44bd-af82-63c188938565",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
+                        },
+                        new
+                        {
+                            Id = "0dfba183-52c7-4e19-b9c9-98d81954c8aa",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "3e284345-17bf-4941-b260-d27acfa6df05",
+                            Email = "Caleb@Email.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            PasswordHash = "AQAAAAEAACcQAAAAEMArHoL6Z0Tj3EsmNuuWBqwYsFxRugf9Mpd71rIXbYa4NDCjW6yXDM4EiKt0tLQ3yQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "1e6b5c2b-23d9-4ae3-b0ed-08ebd690f84a",
+                            TwoFactorEnabled = false,
+                            UserName = "Caleb"
+                        },
+                        new
+                        {
+                            Id = "e6e6e14d-15b3-4a63-9f94-9f78c49ffbb2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "f9dec17a-205c-4e4e-9f52-c0da9dd77b10",
+                            Email = "Jackson@Email.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            PasswordHash = "AQAAAAEAACcQAAAAELpQkX8TmtP8k/l7buOIzeWobrYKoCbaxkuM1rCIt19gWy2pjh3cxyJOL/b9WF509A==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "a1035787-a949-4fc3-a031-3f51c56eb556",
+                            TwoFactorEnabled = false,
+                            UserName = "Jackson"
+                        },
+                        new
+                        {
+                            Id = "f754ad17-11bf-4b2e-8ca0-9c04812fcf68",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "205d89d4-337d-42dc-b993-b4a6348b4b34",
+                            Email = "Courtney@Email.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            PasswordHash = "AQAAAAEAACcQAAAAEBwcZ2q/lKLxW9h8v5ytMwFLK8QjlqgTLIFULV3sNLP3ydZeliUMe30i6bBoRjcCww==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "d0441d23-30be-4e4c-b5b6-6cc803cc3989",
+                            TwoFactorEnabled = false,
+                            UserName = "Courtney"
                         });
                 });
 
@@ -229,6 +271,21 @@ namespace shephards_pies.Migrations
                         new
                         {
                             UserId = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
+                            RoleId = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35"
+                        },
+                        new
+                        {
+                            UserId = "0dfba183-52c7-4e19-b9c9-98d81954c8aa",
+                            RoleId = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35"
+                        },
+                        new
+                        {
+                            UserId = "e6e6e14d-15b3-4a63-9f94-9f78c49ffbb2",
+                            RoleId = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35"
+                        },
+                        new
+                        {
+                            UserId = "f754ad17-11bf-4b2e-8ca0-9c04812fcf68",
                             RoleId = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35"
                         });
                 });
@@ -329,6 +386,7 @@ namespace shephards_pies.Migrations
                         new
                         {
                             Id = 2,
+                            DeliveryDriverId = 2,
                             EmployeeRecieverId = 1,
                             TimePlaced = new DateTime(2023, 9, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             TipAmount = 25.0
@@ -704,6 +762,30 @@ namespace shephards_pies.Migrations
                             FirstName = "Admina",
                             IdentityUserId = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             LastName = "Strator"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "122 Main Street",
+                            FirstName = "Caleb",
+                            IdentityUserId = "0dfba183-52c7-4e19-b9c9-98d81954c8aa",
+                            LastName = "Sullivan"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "156 Main Street",
+                            FirstName = "Jackson",
+                            IdentityUserId = "e6e6e14d-15b3-4a63-9f94-9f78c49ffbb2",
+                            LastName = "Henderson"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Address = "172 Main Street",
+                            FirstName = "Courtney",
+                            IdentityUserId = "f754ad17-11bf-4b2e-8ca0-9c04812fcf68",
+                            LastName = "Gulledge"
                         });
                 });
 

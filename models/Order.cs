@@ -6,12 +6,15 @@ public class Order {
   public UserProfile EmployeeReciever { get; set; }
   public int? DeliveryDriverId { get; set; }
   public UserProfile DeliveryDriver { get; set; }
+  public int TableId { get; set; }
   public DateTime TimePlaced { get; set; }
   public List<Pizza> Pizzas { get; set; }
   public double TipAmount { get; set; }
   
   //need to add calculated values for the total ordercost. 
-  public double TotalOrderCost {get
+  public double TotalOrderCost {
+  
+  get
   {
       double maxPizzaPrice = Pizzas.Max(Pizza => Pizza.PizzaTotalCost);
       double totalCost = maxPizzaPrice + TipAmount;
@@ -22,6 +25,7 @@ public class Order {
       }
       return totalCost;
   }
+
   }
 
 

@@ -4,13 +4,9 @@ import { AuthorizedRoute } from "./auth/AuthorizedRoute";
 
 import Register from "./auth/Register";
 import Login from "./auth/Login";
-import { Home } from "./home/home";
-import { UserProfileList } from "./UserProfileList";
-import { UserProfileDetails } from "./UserProfileDetails";
-import { ChoresList } from "./chores/ChoresList";
-import { ChoreDetails } from "./chores/choreDetails";
-import { CreateChore } from "./chores/createChore";
-import { MyChores } from "./chores/myChores";
+import { ListOrders } from "./orders/listorders";
+import { OrderDetails } from "./orders/orderDetail";
+import { CreateOrder } from "./orders/createOrder";
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
  return (
@@ -40,6 +36,30 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
       </AuthorizedRoute>
      }
     /> */}
+    <Route
+     path="orders"
+     element={
+      <AuthorizedRoute loggedInUser={loggedInUser}>
+       <ListOrders />
+      </AuthorizedRoute>
+     }
+    />
+    <Route
+     path="orders/create"
+     element={
+      <AuthorizedRoute loggedInUser={loggedInUser}>
+       <CreateOrder />
+      </AuthorizedRoute>
+     }
+    />
+    <Route
+     path="orders/:id"
+     element={
+      <AuthorizedRoute loggedInUser={loggedInUser}>
+       <OrderDetails />
+      </AuthorizedRoute>
+     }
+    />
     <Route path="login" element={<Login setLoggedInUser={setLoggedInUser} />} />
     <Route
      path="register"

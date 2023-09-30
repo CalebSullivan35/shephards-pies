@@ -35,26 +35,85 @@ public class ShephardsPiesDbContext : IdentityDbContext<IdentityUser>
             NormalizedName = "admin"
         });
 
-        modelBuilder.Entity<IdentityUser>().HasData(new IdentityUser
+        modelBuilder.Entity<IdentityUser>().HasData(new IdentityUser[]
         {
+            new(){
             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
             UserName = "Administrator",
             Email = "admina@strator.comx",
-            PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, _configuration["AdminPassword"])
+            PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, _configuration["AdminPassword"])  
+            },
+            new(){
+            Id = "0dfba183-52c7-4e19-b9c9-98d81954c8aa",
+            UserName = "Caleb",
+            Email = "Caleb@Email.com",
+            PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, _configuration["AdminPassword"])  
+            },
+            new(){
+            Id = "e6e6e14d-15b3-4a63-9f94-9f78c49ffbb2",
+            UserName = "Jackson",
+            Email = "Jackson@Email.com",
+            PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, _configuration["AdminPassword"])  
+            },
+            new(){
+            Id = "f754ad17-11bf-4b2e-8ca0-9c04812fcf68",
+            UserName = "Courtney",
+            Email = "Courtney@Email.com",
+            PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, _configuration["AdminPassword"])  
+            },
+            
         });
 
-        modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+        modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>[]
         {
+            new(){
             RoleId = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
             UserId = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f"
+            },
+            new(){
+            RoleId = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
+            UserId = "0dfba183-52c7-4e19-b9c9-98d81954c8aa"
+            },
+            new(){
+            RoleId = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
+            UserId = "e6e6e14d-15b3-4a63-9f94-9f78c49ffbb2"
+            },
+            new(){
+            RoleId = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
+            UserId = "f754ad17-11bf-4b2e-8ca0-9c04812fcf68"
+            },
+     
         });
-        modelBuilder.Entity<UserProfile>().HasData(new UserProfile
+        modelBuilder.Entity<UserProfile>().HasData(new UserProfile[]
         {
+            new(){
             Id = 1,
             IdentityUserId = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
             FirstName = "Admina",
             LastName = "Strator",
             Address = "101 Main Street",
+            },
+            new(){
+            Id = 2,
+            IdentityUserId = "0dfba183-52c7-4e19-b9c9-98d81954c8aa",
+            FirstName = "Caleb",
+            LastName = "Sullivan",
+            Address = "122 Main Street",
+            },
+            new(){
+            Id = 3,
+            IdentityUserId = "e6e6e14d-15b3-4a63-9f94-9f78c49ffbb2",
+            FirstName = "Jackson",
+            LastName = "Henderson",
+            Address = "156 Main Street",
+            },
+            new(){
+            Id = 4,
+            IdentityUserId = "f754ad17-11bf-4b2e-8ca0-9c04812fcf68",
+            FirstName = "Courtney",
+            LastName = "Gulledge",
+            Address = "172 Main Street",
+            },
         });
 
         modelBuilder.Entity<Cheese>().HasData(new Cheese[]
@@ -323,13 +382,15 @@ public class ShephardsPiesDbContext : IdentityDbContext<IdentityUser>
                 Id =1,
                 TipAmount = 15.00,
                 EmployeeRecieverId = 1,
+                TableId = 3,
                 TimePlaced = new DateTime(2023,9,27)
             },
             new Order
             {
-                Id =2,
+                Id = 2,
                 TipAmount = 25.00,
                 EmployeeRecieverId = 1,
+                DeliveryDriverId = 2,
                 TimePlaced = new DateTime(2023,9,28)
             },
         });

@@ -325,12 +325,18 @@ namespace shephards_pies.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "83a2f331-8135-4269-a916-26fa5bf750bb", "Admin", "admin" });
+                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "964d9b9d-0a7e-4c2f-9f82-c4b0eab04992", "Admin", "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "cd3a8182-6fc3-437d-8699-69bf7bc3e76f", "admina@strator.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEMUqVlNOpkcjJsxy8hmVNLA6pRnkax3+LW94+hrAioWvC/0+QjitlVQDi0E0UCg8dQ==", null, false, "1810d96e-4cfc-4b71-aa60-f6b535263c8f", false, "Administrator" });
+                values: new object[,]
+                {
+                    { "0dfba183-52c7-4e19-b9c9-98d81954c8aa", 0, "3e284345-17bf-4941-b260-d27acfa6df05", "Caleb@Email.com", false, false, null, null, null, "AQAAAAEAACcQAAAAEMArHoL6Z0Tj3EsmNuuWBqwYsFxRugf9Mpd71rIXbYa4NDCjW6yXDM4EiKt0tLQ3yQ==", null, false, "1e6b5c2b-23d9-4ae3-b0ed-08ebd690f84a", false, "Caleb" },
+                    { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "0843ef9f-75a3-4eec-98b5-a3989b6d5636", "admina@strator.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEB8bw/0JRZGIi2MEFMkDSownsj6aMzoLqgbs7LSyYN4Q8DGY+uzZraPhsS1LvYFmBQ==", null, false, "a969798a-6e70-44bd-af82-63c188938565", false, "Administrator" },
+                    { "e6e6e14d-15b3-4a63-9f94-9f78c49ffbb2", 0, "f9dec17a-205c-4e4e-9f52-c0da9dd77b10", "Jackson@Email.com", false, false, null, null, null, "AQAAAAEAACcQAAAAELpQkX8TmtP8k/l7buOIzeWobrYKoCbaxkuM1rCIt19gWy2pjh3cxyJOL/b9WF509A==", null, false, "a1035787-a949-4fc3-a031-3f51c56eb556", false, "Jackson" },
+                    { "f754ad17-11bf-4b2e-8ca0-9c04812fcf68", 0, "205d89d4-337d-42dc-b993-b4a6348b4b34", "Courtney@Email.com", false, false, null, null, null, "AQAAAAEAACcQAAAAEBwcZ2q/lKLxW9h8v5ytMwFLK8QjlqgTLIFULV3sNLP3ydZeliUMe30i6bBoRjcCww==", null, false, "d0441d23-30be-4e4c-b5b6-6cc803cc3989", false, "Courtney" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Cheeses",
@@ -382,12 +388,24 @@ namespace shephards_pies.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f" });
+                values: new object[,]
+                {
+                    { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "0dfba183-52c7-4e19-b9c9-98d81954c8aa" },
+                    { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f" },
+                    { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "e6e6e14d-15b3-4a63-9f94-9f78c49ffbb2" },
+                    { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "f754ad17-11bf-4b2e-8ca0-9c04812fcf68" }
+                });
 
             migrationBuilder.InsertData(
                 table: "UserProfiles",
                 columns: new[] { "Id", "Address", "FirstName", "IdentityUserId", "LastName" },
-                values: new object[] { 1, "101 Main Street", "Admina", "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", "Strator" });
+                values: new object[,]
+                {
+                    { 1, "101 Main Street", "Admina", "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", "Strator" },
+                    { 2, "122 Main Street", "Caleb", "0dfba183-52c7-4e19-b9c9-98d81954c8aa", "Sullivan" },
+                    { 3, "156 Main Street", "Jackson", "e6e6e14d-15b3-4a63-9f94-9f78c49ffbb2", "Henderson" },
+                    { 4, "172 Main Street", "Courtney", "f754ad17-11bf-4b2e-8ca0-9c04812fcf68", "Gulledge" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Orders",
@@ -395,7 +413,7 @@ namespace shephards_pies.Migrations
                 values: new object[,]
                 {
                     { 1, null, 1, new DateTime(2023, 9, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0 },
-                    { 2, null, 1, new DateTime(2023, 9, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 25.0 }
+                    { 2, 2, 1, new DateTime(2023, 9, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 25.0 }
                 });
 
             migrationBuilder.InsertData(
