@@ -15,10 +15,15 @@ public class PizzaToppingController : ControllerBase {
   }
 
   [HttpGet]
-  // [Authorize] // comment out so post man can access.
+  [Authorize] // comment out so post man can access.
 
   public IActionResult Get()
   {
     return Ok(_dbContext.PizzaToppings);
   }
+
+  
+
+
+
 }

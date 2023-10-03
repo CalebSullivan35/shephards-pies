@@ -10,15 +10,17 @@ public class Pizza {
   public int PizzaSizeId { get; set; }
   public int OrderId { get; set; }
   public PizzaSize PizzaSize{ get; set; }
-  // list of pizza toppings
-  public List<PizzaTopping> PizzaToppings { get; set; }
+  public List<PizzaTopping>? PizzaToppings { get; set; }
   // add calculated property to get the cost of the pizza. Get it from all the pizzatoppings with this pizza as well as the pizza size. 
   public double PizzaTotalCost {
 
   get {
       //intialize total cost
-      double totalCost = PizzaSize.Cost;
+      double totalCost = 0;
 
+      if (PizzaSize != null){
+       totalCost = PizzaSize.Cost;
+      }
       if (PizzaToppings != null)
       {
         foreach (var topping in PizzaToppings)

@@ -5,19 +5,23 @@ public class Order {
   public int EmployeeRecieverId { get; set; }
   public UserProfile EmployeeReciever { get; set; }
   public int? DeliveryDriverId { get; set; }
-  public UserProfile DeliveryDriver { get; set; }
+  public UserProfile? DeliveryDriver { get; set; }
   public int TableId { get; set; }
-  public DateTime TimePlaced { get; set; }
-  public List<Pizza> Pizzas { get; set; }
+  public DateTime TimePlaced { get; set;}
+  public List<Pizza>? Pizzas { get; set; }
   public double TipAmount { get; set; }
   
-  //need to add calculated values for the total ordercost. 
-  public double TotalOrderCost {
+  public double? TotalOrderCost {
   
   get
   {
+      double totalCost = 0;
+      if (Pizzas != null && Pizzas.Count > 0)
+      {
       double maxPizzaPrice = Pizzas.Max(Pizza => Pizza.PizzaTotalCost);
-      double totalCost = maxPizzaPrice + TipAmount;
+       totalCost += maxPizzaPrice + TipAmount;
+      }
+
       if (DeliveryDriverId != null)
       {
         //delivery surcharge

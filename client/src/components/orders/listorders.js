@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getOrders } from "../../managers/ordermanager";
+import { deleteOrder, getOrders } from "../../managers/ordermanager";
 import { Button, Table } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 
@@ -10,10 +10,15 @@ export const ListOrders = () => {
  function getData() {
   getOrders().then(setOrders);
  }
-
  useEffect(() => {
   getData();
  }, []);
+
+ const handleDeleteOrder = (order) => {
+  deleteOrder(order).then(() => {
+   getData();
+  });
+ };
 
  return (
   <>
@@ -31,6 +36,8 @@ export const ListOrders = () => {
       <th>Order Id</th>
       <th>Date Placed</th>
       <th>Number of Pizzas</th>
+      <th>Total Cost</th>
+      <th></th>
       <th>Actions</th>
      </tr>
     </thead>
@@ -40,6 +47,8 @@ export const ListOrders = () => {
        <td>{o.id}</td>
        <td>{o.timePlaced.split("T")[0]}</td>
        <td>{o.pizzas.length}</td>
+       <td>${o.totalOrderCost}</td>
+       <td></td>
        <td>
         <Button
          color="primary"
@@ -48,6 +57,9 @@ export const ListOrders = () => {
          }}
         >
          Details
+        </Button>
+        <Button color="danger" onClick={() => handleDeleteOrder(o)}>
+         Delete
         </Button>
        </td>
       </tr>

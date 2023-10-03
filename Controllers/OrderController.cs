@@ -52,4 +52,29 @@ public class OrderController : ControllerBase {
     .Include(o=> o.DeliveryDriver)
     .SingleOrDefault(o => o.Id == id));
   }
+
+  
+  [HttpPost]
+  [Authorize]
+  public IActionResult CreateNewOrder(Order order)
+  {
+    order.TimePlaced = DateTime.Now;
+    _dbContext.Orders.Add(order);
+    _dbContext.SaveChanges();
+     return Created($"/api/order/{order.Id}", order);
+  }
+
+[HttpDelete("{orderId}")]
+[Authorize]
+
+public IActionResult DeleteOrder(int orderId)
+{
+    Order orderToRemove = _dbContext.Orders.SingleOrDefault(o => o.Id == orderId);
+    _dbContext.Orders.Remove(orderToRemove);
+    _dbContext.SaveChanges();
+    return NoContent();
+}
+
+
+
 }

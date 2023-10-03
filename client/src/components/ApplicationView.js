@@ -7,6 +7,7 @@ import Login from "./auth/Login";
 import { ListOrders } from "./orders/listorders";
 import { OrderDetails } from "./orders/orderDetail";
 import { CreateOrder } from "./orders/createOrder";
+import { CreatePizzaForNewOrder } from "./orders/createPizza";
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
  return (
@@ -48,7 +49,7 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
      path="orders/create"
      element={
       <AuthorizedRoute loggedInUser={loggedInUser}>
-       <CreateOrder />
+       <CreateOrder loggedInUser={loggedInUser} />
       </AuthorizedRoute>
      }
     />
@@ -57,6 +58,14 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
      element={
       <AuthorizedRoute loggedInUser={loggedInUser}>
        <OrderDetails />
+      </AuthorizedRoute>
+     }
+    />
+    <Route
+     path="orders/create/:id"
+     element={
+      <AuthorizedRoute loggedInUser={loggedInUser}>
+       <CreatePizzaForNewOrder />
       </AuthorizedRoute>
      }
     />

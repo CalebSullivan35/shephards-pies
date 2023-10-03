@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
-import { ListGroup, ListGroupItem, Table } from "reactstrap";
+import { Button, ListGroup, ListGroupItem, Table } from "reactstrap";
 import { getOrderDetails } from "../../managers/ordermanager";
 import { useEffect, useState } from "react";
+import { deletePizza } from "../../managers/pizzaManager";
 
 export const OrderDetails = () => {
  const [detailedOrder, setDetailedOrder] = useState({});
@@ -10,6 +11,10 @@ export const OrderDetails = () => {
   getOrderDetails(id).then(setDetailedOrder);
   console.log(detailedOrder);
  }
+
+ const handleDeletePizza = (pizza) => {
+  deletePizza(pizza).then(() => getData());
+ };
 
  useEffect(() => {
   getData();
@@ -41,6 +46,7 @@ export const OrderDetails = () => {
      <th></th>
      <th>Sauce</th>
      <th>Cheese</th>
+     <th>Actions</th>
     </thead>
     <tbody>
      {detailedOrder?.pizzas?.map((pizza) => {
@@ -59,6 +65,11 @@ export const OrderDetails = () => {
         <td></td>
         <td>{pizza.sauce.name}</td>
         <td>{pizza.cheese.name}</td>
+        <td>
+         <Button color="danger" onClick={() => handleDeletePizza(pizza)}>
+          Delete
+         </Button>
+        </td>
        </tr>
       );
      })}
