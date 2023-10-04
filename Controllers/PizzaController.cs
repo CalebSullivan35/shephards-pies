@@ -52,4 +52,42 @@ public class PizzaController : ControllerBase {
     _dbContext.SaveChanges();
     return NoContent();
   }
+
+  //get a pizza by id
+  [HttpGet("{id}")]
+  [Authorize]
+  public IActionResult GetPizza(int id)
+  {
+    Pizza pizzaToGet = _dbContext.Pizzas
+    .Include(p=>p.Cheese)
+    .Include(p=> p.Sauce)
+    .Include(p=>p.PizzaSize)
+    .Include(p=>p.PizzaToppings)
+    .ThenInclude(pt => pt.Topping)
+    .SingleOrDefault(p => p.Id == id);
+    if (pizzaToGet == null){
+      return NotFound();
+    }
+    return Ok(pizzaToGet);
+  }
+
+  //edit pizza with a put
+  [HttpPut("{id}")]
+  [Authorize]
+  
+  public IActionResult editPizza(int id, Pizza pizza)
+  {
+    Pizza pizzaToUpdate = _dbContext.Pizzas.SingleOrDefault(p => p.Id == id);
+
+    if(pizzaToUpdate == null)
+    {
+      return NotFound();
+    }
+    //properties that we are changing.
+    pizzaToUpdate.CheeseId = pizza.CheeseId;
+    pizzaToUpdate.SauceId = pizza.SauceId;
+    pizzaToUpdate.PizzaSizeId = pizza.PizzaSizeId;
+    _dbContext.SaveChanges();
+    return NoContent();
+  }
 }

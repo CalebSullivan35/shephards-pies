@@ -1,10 +1,14 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace ShephardsPies.Models;
 
 public class Order {
   public int Id { get; set; }
   public int EmployeeRecieverId { get; set; }
+  [ForeignKey("EmployeeRecieverId")]
   public UserProfile EmployeeReciever { get; set; }
   public int? DeliveryDriverId { get; set; }
+  [ForeignKey("DeliveryDriverId")]
   public UserProfile? DeliveryDriver { get; set; }
   public int TableId { get; set; }
   public DateTime TimePlaced { get; set;}
@@ -18,8 +22,9 @@ public class Order {
       double totalCost = 0;
       if (Pizzas != null && Pizzas.Count > 0)
       {
-      double maxPizzaPrice = Pizzas.Max(Pizza => Pizza.PizzaTotalCost);
-       totalCost += maxPizzaPrice + TipAmount;
+      foreach(Pizza pizza in Pizzas){
+          totalCost += pizza.PizzaTotalCost;
+      }
       }
 
       if (DeliveryDriverId != null)
@@ -27,6 +32,8 @@ public class Order {
         //delivery surcharge
         totalCost += 5.00;
       }
+
+      totalCost += TipAmount;
       return totalCost;
   }
 

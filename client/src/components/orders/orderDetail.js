@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { Button, ListGroup, ListGroupItem, Table } from "reactstrap";
 import { getOrderDetails } from "../../managers/ordermanager";
 import { useEffect, useState } from "react";
@@ -6,6 +6,7 @@ import { deletePizza } from "../../managers/pizzaManager";
 
 export const OrderDetails = () => {
  const [detailedOrder, setDetailedOrder] = useState({});
+ const navigate = useNavigate();
  const { id } = useParams();
  function getData() {
   getOrderDetails(id).then(setDetailedOrder);
@@ -38,6 +39,14 @@ export const OrderDetails = () => {
     </ListGroupItem>
    </ListGroup>
    <h3>Pizzas For order:</h3>
+   <Button
+    color="primary"
+    onClick={() => {
+     navigate(`/orders/create/${id}`);
+    }}
+   >
+    Add Pizza
+   </Button>
    <Table>
     <thead>
      <th>Pizza #</th>
@@ -55,7 +64,7 @@ export const OrderDetails = () => {
         <td>
          <h3>{pizza.id}</h3>
         </td>
-        <td>{pizza.sauce.name}</td>
+        <td>{pizza.pizzaSize.name}</td>
         <td>
          {pizza.pizzaToppings.map((pt) => {
           return <tr>{pt.topping.name}</tr>;
@@ -66,6 +75,14 @@ export const OrderDetails = () => {
         <td>{pizza.sauce.name}</td>
         <td>{pizza.cheese.name}</td>
         <td>
+         <Button
+          color="primary"
+          onClick={() => {
+           navigate(`/pizza/${pizza.id}`);
+          }}
+         >
+          Edit Pizza
+         </Button>
          <Button color="danger" onClick={() => handleDeletePizza(pizza)}>
           Delete
          </Button>

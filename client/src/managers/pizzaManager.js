@@ -32,3 +32,18 @@ export const deletePizza = (pizza) => {
   method: "DELETE",
  });
 };
+
+export const getPizza = (id) => {
+ return fetch(`/api/pizza/${id}`).then((res) => res.json());
+};
+
+//update pizza
+export const updatePizza = (id, pizza) => {
+ return fetch(`${_apiUrl}/${id}`, {
+  method: "PUT",
+  headers: {
+   "Content-Type": "application/json",
+  },
+  body: JSON.stringify(pizza),
+ });
+};

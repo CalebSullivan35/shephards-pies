@@ -1,6 +1,7 @@
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ShephardsPies.Data;
 
 [ApiController]
@@ -22,6 +23,20 @@ public class PizzaToppingController : ControllerBase {
     return Ok(_dbContext.PizzaToppings);
   }
 
+  [HttpGet("{id}")]
+  [Authorize]
+
+  public IActionResult getMatchingToppings(int id)
+  {
+    var results = _dbContext.PizzaToppings.Include(pt => pt.Topping).Where(pt => pt.PizzaId == id);
+
+    if (results == null)
+    {
+      return NotFound();
+    }
+
+    return Ok(results);
+  }
   
 
 

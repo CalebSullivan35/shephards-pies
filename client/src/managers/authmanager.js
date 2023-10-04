@@ -37,3 +37,7 @@ export const register = (userProfile) => {
   body: JSON.stringify(userProfile),
  }).then(() => fetch(_apiUrl + "/me").then((res) => res.json()));
 };
+
+export const getAllUsers = () => {
+ return fetch("/api/user").then((res) => res.json());
+};

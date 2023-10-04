@@ -16,7 +16,7 @@ public class ToppingController : ControllerBase {
   }
 
   [HttpGet]
-  // [Authorize] // comment out so post man can access.
+  [Authorize] // comment out so post man can access.
 
   public IActionResult Get()
   {
